@@ -13,9 +13,9 @@ frameWidth = 64
 numFrames :: Int
 numFrames = 5
 
-frameLines :: (Int, Line, Line) -> (Line, Line)
-frameLines (index, line0, line1) = (translate frameStart line0, translate frameStart line1)
-  where frameStart = (Point index * frameWidth 0)
+frameLines :: Int -> Line -> Line -> (Line, Line)
+frameLines index line0 line1 = (translate frameStart line0, translate frameStart line1)
+  where frameStart = (Point (index * frameWidth) 0)
 
 main :: IO ()
 main = do
@@ -32,7 +32,7 @@ svg content = doctype <> with (svg11_ content) [Version_ <<- "1.1", Width_ <<- "
 
 defaultFrame :: Int -> Element
 defaultFrame index = rect_ [X_ <<- ((pack . show) (index * frameWidth)), Y_ <<- "0",
-                            Width_ <<- "64", Height_ <<- "64", "red" ->> Fill_]
+                            Width_ <<- "64", Height_ <<- "64", "red" ->> Stroke_]
 
 lineToSvg :: Line -> Element
 lineToSvg (Line (Point xS yS) (Point xE yE)) = line_ [X1_ <<- (pack $ show xS), Y1_ <<- (pack $ show yS),
