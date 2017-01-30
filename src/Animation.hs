@@ -2,17 +2,16 @@ module Animation (Point(..), Line(..), Translatable(..), linearAnimate, linearAn
 
 class Translatable a where
   translate :: Point -> a -> a
-  
 
 data Point = Point Int Int deriving (Eq, Show)
 
 instance Translatable Point where
-  translate (Point xt yt) (Point x y) = (Point (xt + x) (yt + y))
+  translate (Point xt yt) (Point x y) = Point (xt + x) (yt + y)
 
 data Line = Line Point Point deriving (Eq, Show)
 
 instance Translatable Line where
-  translate pt (Line pStart pEnd) = (Line (translate pt pStart) (translate pt pEnd))
+  translate pt (Line pStart pEnd) = Line (translate pt pStart) (translate pt pEnd)
 
 linearAnimateLine :: Int -> Line -> Line -> [Line]
 linearAnimateLine num (Line start0 end0) (Line start1 end1) = zipWith Line startPoints endPoints
