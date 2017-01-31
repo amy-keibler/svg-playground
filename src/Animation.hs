@@ -24,5 +24,5 @@ linearAnimate num (Point x0 y0) (Point x1 y1) = zipWith Point xPoints yPoints
         yPoints = interpolate num y0 y1
 
 interpolate :: Int -> Int -> Int -> [Int]
-interpolate num start stop = take num $ iterate (+ diff) start
-  where diff = (stop - start) `div` (num - 1)
+interpolate num start stop = take num $ round <$> (iterate (+ diff) . fromIntegral) start
+  where diff = fromIntegral (stop - start) / fromIntegral (num - 1)

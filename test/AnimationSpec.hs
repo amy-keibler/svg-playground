@@ -17,8 +17,10 @@ spec = do
   describe "iterate" $ do
     it "should iterate between zero and 2" $
       interpolate 3 0 2 `shouldBe` [0, 1, 2]
-    it "should iterate between 10 and 50" $
+    it "should iterate between 10 and 50 for 9 frames" $
       interpolate 9 10 50 `shouldBe` [10, 15, 20, 25, 30, 35, 40, 45, 50]
+    it "should iterate between 10 and 50 for 10 frames" $
+      interpolate 10 10 50 `shouldBe` [10, 14, 19, 23, 28, 32, 37, 41, 46, 50]
   describe "linearAnimateLine" $
     it "should interpolate the line over 2" $
       linearAnimateLine 3 (Line (Point 0 0) (Point 0 2))
