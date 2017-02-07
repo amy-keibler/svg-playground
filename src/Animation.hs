@@ -1,14 +1,28 @@
+{-# LANGUAGE DeriveGeneric #-}
 module Animation (Point(..), Line(..), Translatable(..), linearAnimate, linearAnimateLine, interpolate) where
+
+import GHC.Generics
+import Data.Aeson
 
 class Translatable a where
   translate :: Point -> a -> a
 
-data Point = Point Int Int deriving (Eq, Show)
+data Point = Point {
+  x :: Int
+  , y :: Int
+  } deriving (Eq, Show, Generic)
+
+instance FromJSON Point
 
 instance Translatable Point where
   translate (Point xt yt) (Point x y) = Point (xt + x) (yt + y)
 
-data Line = Line Point Point deriving (Eq, Show)
+data Line = Line {
+  start :: Point
+  , end :: Point
+  } deriving (Eq, Show, Generic)
+
+instance FromJSON Line
 
 instance Translatable Line where
   translate pt (Line pStart pEnd) = Line (translate pt pStart) (translate pt pEnd)
