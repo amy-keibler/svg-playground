@@ -1,5 +1,11 @@
 {-# LANGUAGE DeriveGeneric #-}
-module Animation (Point(..), Line(..), Translatable(..), linearAnimate, linearAnimateLine, interpolate) where
+module Animation (Point(..)
+                 , Line(..)
+                 , Rectangle(..)
+                 , Translatable(..)
+                 , linearAnimate
+                 , linearAnimateLine
+                 , interpolate) where
 
 import GHC.Generics
 import Data.Aeson
@@ -26,6 +32,16 @@ instance FromJSON Line
 
 instance Translatable Line where
   translate pt (Line pStart pEnd) = Line (translate pt pStart) (translate pt pEnd)
+
+data Rectangle = Rectangle {
+  topLeft :: Point
+  , bottomRight :: Point
+  } deriving (Eq, Show, Generic)
+
+instance FromJSON Rectangle
+
+instance Translatable Rectangle where
+  translate pt (Rectangle topLeft bottomRight) = Rectangle (translate pt topLeft) (translate pt bottomRight)
 
 linearAnimateLine :: Int -> Line -> Line -> [Line]
 linearAnimateLine num (Line start0 end0) (Line start1 end1) = zipWith Line startPoints endPoints

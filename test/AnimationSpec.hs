@@ -34,8 +34,12 @@ spec = do
       translate (Point 1 1) (Point 0 1) `shouldBe` Point 1 2
     it "should translate lines" $
       translate (Point 1 1) (Line (Point 0 1) (Point 1 0)) `shouldBe` Line (Point 1 2) (Point 2 1)
+    it "should translate rectangles" $
+      translate (Point 1 1) (Rectangle (Point 0 1) (Point 1 0)) `shouldBe` Rectangle (Point 1 2) (Point 2 1)
   describe "json" $ do
     it "should decode points" $
       (decode . C.pack) "{\"x\": 32, \"y\": 24}" `shouldBe` Just Point {x=32, y=24}
     it "should decode lines" $
-      (decode . C.pack) "{\"start\": {\"x\": 32, \"y\": 24}, \"end\": {\"x\": 24, \"y\": 32}}" `shouldBe` Just (Line (Point {x=32, y=24}) (Point {x=24, y=32}))
+      (decode . C.pack) "{\"start\": {\"x\": 32, \"y\": 24}, \"end\": {\"x\": 24, \"y\": 32}}" `shouldBe` Just (Line Point {x=32, y=24} Point {x=24, y=32})
+    it "should decode rectangles" $
+      (decode . C.pack) "{\"topLeft\": {\"x\": 32, \"y\": 24}, \"bottomRight\": {\"x\": 24, \"y\": 32}}" `shouldBe` Just (Rectangle (Point 32 24) (Point 24 32))

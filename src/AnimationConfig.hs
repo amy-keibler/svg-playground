@@ -1,12 +1,16 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 module AnimationConfig (AnimationConfig(..)
+                       , SVGStyling(..)
+                       , SVGShape(..)
                        , loadConfig)where
 
 import GHC.Generics
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as C
 import Control.Monad (mzero)
+
+import Animation(Rectangle)
 
 defaultFilename :: String
 defaultFilename = "/tmp/animation"
@@ -17,11 +21,34 @@ defaultFrameSize = 64
 defaultNumFrames :: Int
 defaultNumFrames = 10
 
+data SVGStyling = SVGStyling {
+  stroke :: String
+  , strokeWidth :: String
+  , fill :: String
+  , fillOpacity :: String
+  } deriving (Eq, Show, Generic)
+
+instance FromJSON SVGStyling where
+  parseJSON (Object v) = SVGStyling <$>
+                         v .:? "stroke" .!= "black" <*>
+                         v .:? "strokeWidth" .!= "1" <*>
+                         v .:? "fill" .!= "white" <*>
+                         v .:? "fillOpacity" .!= "1"
+  parseJSON _ = mzero
+
+data SVGShape = SVGShape {
+  rect :: Rectangle
+  , style :: SVGStyling
+  } deriving (Eq, Show, Generic)
+
+instance FromJSON SVGShape
+
 data AnimationConfig = AnimationConfig {
   filename :: String
   , frameWidth :: Int
   , frameHeight :: Int
   , numFrames :: Int
+  , staticShapes :: [SVGShape]
   } deriving (Eq, Show, Generic)
 
 instance FromJSON AnimationConfig where
@@ -29,7 +56,8 @@ instance FromJSON AnimationConfig where
                          v .:? "filename" .!= defaultFilename <*>
                          v .:? "frameWidth" .!= defaultFrameSize <*>
                          v .:? "frameHeight" .!= defaultFrameSize <*>
-                         v .:? "numFrames" .!= defaultNumFrames
+                         v .:? "numFrames" .!= defaultNumFrames <*>
+                         v .:? "staticShapes" .!= []
   parseJSON _ = mzero
 
 loadConfig :: String -> Either String AnimationConfig
