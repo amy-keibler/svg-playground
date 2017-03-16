@@ -5,37 +5,30 @@ import Animation
 import AnimationConfig
 
 import Graphics.Svg hiding (translate)
-import Data.Text hiding (foldr1, index, zip, map, foldr)
+import Data.Text (pack)
+import System.Environment (getArgs)
 
-import Data.List (zip4)
+import Data.List (transpose)
 
-framedLinesToSvg :: (Line, Line, Line, Line) -> Element
-framedLinesToSvg (line0, line1, line2, line3) = thickLineSvg line0
-                                                <> thickLineSvg line1
-                                                <> thinLineSvg line2
-                                                <> thinLineSvg line3
-  where thickLineSvg = lineToSvg "8" "#990000"
-        thinLineSvg = lineToSvg "4" "#cc0000"
+framedLinesToSvg :: [(Line, SVGStyling)] -> Element
+framedLinesToSvg lines = foldr1 (<>) (uncurry lineToSvg <$> lines)
+
+filenameArg :: [String] -> String
+filenameArg [] = undefined
+filenameArg (filename':_) = filename'
 
 main :: IO ()
-main = do
-  let config = loadConfig "{}"
-  let numF = numFrames' config
-  let topBackSlash = linearAnimateLine numF (Line (Point 20 20) (Point 44 44)) (Line (Point 26 20) (Point 26 44))
-  let topForwardSlash = linearAnimateLine numF (Line (Point 20 44) (Point 44 20)) (Line (Point 38 44) (Point 38 20))
-  let bottomBackSlash = linearAnimateLine numF (Line (Point 16 16) (Point 48 48)) (Line (Point 26 18) (Point 26 46))
-  let bottomForwardSlash = linearAnimateLine numF (Line (Point 16 48) (Point 48 16)) (Line (Point 38 46) (Point 38 18))
-  let lineFrames = fmap (show . svg (frameSize' config) . ((configFrame $ staticShapes' config) <> )) $ framedLinesToSvg <$> zip4 bottomBackSlash bottomForwardSlash topBackSlash topForwardSlash
+main = getArgs >>= handleFileName
+  where handleFileName (filepath:_) = loadConfig <$> readFile filepath >>= outputAnimiation
+        handleFileName _ = putStrLn "Please pass the filename of the json config file."
+
+outputAnimiation :: Either String AnimationConfig -> IO ()
+outputAnimiation (Left err) = putStrLn err
+outputAnimiation (Right config) = do
+  let numF = numFrames config
+  let lineFrames = fmap (show . svg (frameWidth config, frameHeight config) . ((configFrame $ staticShapes config) <> )) $ framedLinesToSvg <$> transpose (zipConfigs numF (animatedShapes config))
   let indexedFiles = zip [0..] lineFrames
-  mapM_ (\(index, file) -> writeFile (filename' config ++ show index ++ ".svg") file) indexedFiles
-    where numFrames' (Right config) = numFrames config
-          numFrames' _ = undefined
-          filename' (Right config) = filename config
-          filename' _ = undefined
-          frameSize' (Right config) = (frameWidth config, frameHeight config)
-          frameSize' _ = undefined
-          staticShapes' (Right config) = staticShapes config
-          staticShapes' _ = undefined
+  mapM_ (\(index, file) -> writeFile (filename config ++ show (index :: Integer) ++ ".svg") file) indexedFiles
 
 svg :: (Int, Int) -> Element -> Element
 svg (frameWidth', frameHeight') content = doctype <> with (svg11_ content) [Version_ <<- "1.1",
@@ -45,20 +38,22 @@ svg (frameWidth', frameHeight') content = doctype <> with (svg11_ content) [Vers
                     frameH = pack $ show frameHeight'
 
 configFrame :: [SVGShape] -> Element
-configFrame = (foldr (<>) mempty) . fmap rectangleToElement
-  where toElement (SVGShape rect style) = rect_ [X_ <<- (pack . show . x . topLeft) rect, Y_ <<- (pack . show . y . topLeft) rect]
+configFrame = foldr (<>) mempty . fmap rectangleToElement
 
 rectangleToElement :: SVGShape -> Element
 rectangleToElement (SVGShape rect style) = rect_ [X_ <<- (pack . show . x . topLeft) rect,
                                                   Y_ <<- (pack . show . y . topLeft) rect,
                                                   Width_ <<- (pack . show $ ((x . bottomRight) rect - (x . topLeft) rect)),
                                                   Height_ <<- (pack . show $ ((y . bottomRight) rect - (y . topLeft) rect)),
-                                                  Stroke_ <<- (pack . show . stroke) style,
-                                                  Stroke_width_ <<- (pack . show . strokeWidth) style,
-                                                  Fill_ <<- (pack . show . fill) style,
-                                                  Fill_opacity_ <<- (pack . show . fillOpacity) style]
+                                                  Stroke_ <<- (pack . stroke) style,
+                                                  Stroke_width_ <<- (pack . strokeWidth) style,
+                                                  Fill_ <<- (pack . fill) style,
+                                                  Fill_opacity_ <<- (pack . fillOpacity) style]
 
-lineToSvg :: Text -> Text -> Line -> Element
-lineToSvg width color(Line (Point xS yS) (Point xE yE)) = line_ [X1_ <<- pack (show xS), Y1_ <<- pack (show yS),
+lineToSvg :: Line -> SVGStyling -> Element
+lineToSvg (Line (Point xS yS) (Point xE yE)) (SVGStyling color width _ _) = line_ [X1_ <<- pack (show xS), Y1_ <<- pack (show yS),
                                                       X2_ <<- pack (show xE), Y2_ <<- pack (show yE),
-                                                      Stroke_ <<- color, Stroke_width_ <<- width]
+                                                      Stroke_ <<- pack color, Stroke_width_ <<- pack width]
+
+zipConfigs :: Int -> [SVGAnimation] -> [[(Line, SVGStyling)]]
+zipConfigs numFrames = fmap (\(SVGAnimation start end style) -> zip (linearAnimateLine numFrames start end) (repeat style))

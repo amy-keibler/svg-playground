@@ -3,6 +3,7 @@
 module AnimationConfig (AnimationConfig(..)
                        , SVGStyling(..)
                        , SVGShape(..)
+                       , SVGAnimation(..)
                        , loadConfig)where
 
 import GHC.Generics
@@ -10,7 +11,7 @@ import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as C
 import Control.Monad (mzero)
 
-import Animation(Rectangle)
+import Animation(Rectangle, Line)
 
 defaultFilename :: String
 defaultFilename = "/tmp/animation"
@@ -43,12 +44,21 @@ data SVGShape = SVGShape {
 
 instance FromJSON SVGShape
 
+data SVGAnimation = SVGAnimation {
+  startLine :: Line
+  , endLine :: Line
+  , animatedStyle :: SVGStyling
+  } deriving (Eq, Show, Generic)
+
+instance FromJSON SVGAnimation
+
 data AnimationConfig = AnimationConfig {
   filename :: String
   , frameWidth :: Int
   , frameHeight :: Int
   , numFrames :: Int
   , staticShapes :: [SVGShape]
+  , animatedShapes :: [SVGAnimation]
   } deriving (Eq, Show, Generic)
 
 instance FromJSON AnimationConfig where
@@ -57,7 +67,8 @@ instance FromJSON AnimationConfig where
                          v .:? "frameWidth" .!= defaultFrameSize <*>
                          v .:? "frameHeight" .!= defaultFrameSize <*>
                          v .:? "numFrames" .!= defaultNumFrames <*>
-                         v .:? "staticShapes" .!= []
+                         v .:? "staticShapes" .!= [] <*>
+                         v .:? "animatedShapes" .!= []
   parseJSON _ = mzero
 
 loadConfig :: String -> Either String AnimationConfig

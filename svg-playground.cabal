@@ -29,6 +29,7 @@ executable svg-playground
   build-depends:       base
                      , svg-builder >= 0.1
                      , text >= 0.11
+                     , bytestring >= 0.10
                      , svg-playground
   default-language:    Haskell2010
 

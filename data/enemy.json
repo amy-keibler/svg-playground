@@ -1,0 +1,159 @@
+{
+    "filename": "/tmp/enemy",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "numFrames": 10,
+    "staticShapes": [{
+        "rect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "style": {
+            "stroke": "black",
+            "strokeWidth": "0",
+            "fill": "#660000",
+            "fillOpacity": ".5"
+        }
+    }, {
+        "rect": {
+            "topLeft": {
+                "x": 4,
+                "y": 4
+            },
+            "bottomRight": {
+                "x": 60,
+                "y": 60
+            }
+        },
+        "style": {
+            "stroke": "#990000",
+            "strokeWidth": "8",
+            "fill": "black",
+            "fillOpacity": "0"
+        }
+    }, {
+        "rect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "style": {
+            "stroke": "#cc0000",
+            "strokeWidth": "4",
+            "fill": "black",
+            "fillOpacity": "0"
+        }
+    }],
+    "animatedShapes": [{
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": 16
+            },
+            "end": {
+                "x": 48,
+                "y": 48
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 26,
+                "y": 18
+            },
+            "end": {
+                "x": 26,
+                "y": 46
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#990000",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": 48
+            },
+            "end": {
+                "x": 48,
+                "y": 16
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 38,
+                "y": 46
+            },
+            "end": {
+                "x": 38,
+                "y": 18
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#990000",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 20,
+                "y": 20
+            },
+            "end": {
+                "x": 44,
+                "y": 44
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 26,
+                "y": 20
+            },
+            "end": {
+                "x": 26,
+                "y": 44
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#cc0000",
+            "strokeWidth": "4"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 20,
+                "y": 44
+            },
+            "end": {
+                "x": 44,
+                "y": 20
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 38,
+                "y": 44
+            },
+            "end": {
+                "x": 38,
+                "y": 20
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#cc0000",
+            "strokeWidth": "4"
+        }
+    }]
+}
