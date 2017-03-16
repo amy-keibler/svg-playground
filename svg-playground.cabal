@@ -1,14 +1,13 @@
 name:                svg-playground
 version:             0.1.0.0
-synopsis:            Initial project template from stack, using hspec and quickcheck
+synopsis:            Creates animation frames for game sprites
 description:         Please see README.md
-homepage:            https://github.com/githubuser/svg-playground#readme
+homepage:            https://github.com/matt-keibler/svg-playground#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2017 Author name here
-category:            Web
+author:              Matt Keibler
+copyright:           2017 Matt Keibler
+category:            Image
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
@@ -48,4 +47,4 @@ test-suite svg-playground-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/svg-playground
+  location: https://github.com/matt-keibler/svg-playground
