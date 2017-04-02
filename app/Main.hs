@@ -56,4 +56,4 @@ lineToSvg (Line (Point xS yS) (Point xE yE)) (SVGStyling color width _ _) = line
                                                       Stroke_ <<- pack color, Stroke_width_ <<- pack width]
 
 zipConfigs :: Int -> [SVGAnimation] -> [[(Line, SVGStyling)]]
-zipConfigs numFrames = fmap (\(SVGAnimation start end style) -> zip (linearAnimateLine numFrames start end) (repeat style))
+zipConfigs numFrames = fmap (\(SVGAnimation start end style) -> zip (animate numFrames start end) (repeat style))
