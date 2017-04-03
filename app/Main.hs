@@ -41,7 +41,7 @@ configFrame :: [SVGShape] -> Element
 configFrame = foldr (<>) mempty . fmap rectangleToElement
 
 rectangleToElement :: SVGShape -> Element
-rectangleToElement (SVGShape rect style) = rect_ [X_ <<- (pack . show . x . topLeft) rect,
+rectangleToElement (SVGRect rect style) = rect_ [X_ <<- (pack . show . x . topLeft) rect,
                                                   Y_ <<- (pack . show . y . topLeft) rect,
                                                   Width_ <<- (pack . show $ ((x . bottomRight) rect - (x . topLeft) rect)),
                                                   Height_ <<- (pack . show $ ((y . bottomRight) rect - (y . topLeft) rect)),
@@ -56,4 +56,4 @@ lineToSvg (Line (Point xS yS) (Point xE yE)) (SVGStyling color width _ _) = line
                                                       Stroke_ <<- pack color, Stroke_width_ <<- pack width]
 
 zipConfigs :: Int -> [SVGAnimation] -> [[(Line, SVGStyling)]]
-zipConfigs numFrames = fmap (\(SVGAnimation start end style) -> zip (animate numFrames start end) (repeat style))
+zipConfigs numFrames = fmap (\(SVGAnimationLine start end style) -> zip (animate numFrames start end) (repeat style))
