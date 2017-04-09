@@ -4,6 +4,7 @@ module AnimationConfig (AnimationConfig(..)
                        , SVGStyling(..)
                        , SVGShape(..)
                        , SVGAnimation(..)
+                       , interpolateSVG
                        , loadConfig)where
 
 import Data.HashMap.Strict (member)
@@ -12,7 +13,7 @@ import Data.Aeson
 import qualified Data.ByteString.Lazy.Char8 as C
 import Control.Monad (mzero)
 
-import Animation(Rectangle, Line, Circle, Ellipse)
+import Animation(Rectangle, Line, Circle, Ellipse, Animatable(..))
 
 defaultFilename :: String
 defaultFilename = "/tmp/animation"
@@ -79,6 +80,12 @@ instance FromJSON SVGAnimation where
                                 v .:  "animatedStyle"
     | otherwise = mzero
   parseJSON _ = mzero
+
+interpolateSVG :: Int -> SVGAnimation -> [SVGShape]
+interpolateSVG num (SVGAnimationLine lineStart lineEnd style) = zipWith SVGLine (animate num lineStart lineEnd) (repeat style)
+interpolateSVG num (SVGAnimationRect rectStart rectEnd style) = zipWith SVGRect (animate num rectStart rectEnd) (repeat style)
+interpolateSVG num (SVGAnimationCircle circleStart circleEnd style) = zipWith SVGCircle (animate num circleStart circleEnd) (repeat style)
+interpolateSVG num (SVGAnimationEllipse ellipseStart ellipseEnd style) = zipWith SVGEllipse (animate num ellipseStart ellipseEnd) (repeat style)
 
 data AnimationConfig = AnimationConfig {
   filename :: String

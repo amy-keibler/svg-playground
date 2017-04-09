@@ -1,0 +1,94 @@
+{
+    "filename": "/tmp/player_death",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "numFrames": 10,
+    "staticShapes": [{
+        "ellipse": {
+            "ellipseCenter": {
+                "x": 32,
+                "y": 32
+            },
+            "rX": 22,
+            "rY": 8
+        },
+        "style": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "0",
+            "fill": "#FFFFFF",
+            "fillOpacity": "1"
+        }
+    }, {
+        "ellipse": {
+            "ellipseCenter": {
+                "x": 32,
+                "y": 32
+            },
+            "rX": 8,
+            "rY": 22
+        },
+        "style": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "0",
+            "fill": "#FFFFFF",
+            "fillOpacity": "1"
+        }
+    }],
+    "animatedShapes": [{
+        "startRect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 26,
+                "y": 26
+            },
+            "bottomRight": {
+                "x": 38,
+                "y": 38
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "4",
+            "fill": "#FFFFFF",
+            "fillOpacity": "0"
+        }
+    },{
+        "startRect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 26,
+                "y": 26
+            },
+            "bottomRight": {
+                "x": 38,
+                "y": 38
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "4",
+            "fill": "#FFFFFF",
+            "fillOpacity": "0",
+            "rx": "10",
+            "ry": "10"
+        }
+    }]
+}

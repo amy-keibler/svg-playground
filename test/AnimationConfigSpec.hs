@@ -33,3 +33,39 @@ spec = do
   describe "styles" $
     it "should handle the default styles" $
       (decode . C.pack) "{}" `shouldBe` Just (SVGStyling "black" "1" "white" "1")
+  it "should transform lines" $
+    interpolateSVG 3 (SVGAnimationLine (Line (Point 0 0) (Point 4 2))
+                       (Line (Point 2 4) (Point 0 0))
+                       (SVGStyling "red" "2" "blue" "1")) `shouldBe` [SVGLine (Line (Point 0 0) (Point 4 2))
+                                                                       (SVGStyling "red" "2" "blue" "1"),
+                                                                      SVGLine (Line (Point 1 2) (Point 2 1))
+                                                                       (SVGStyling "red" "2" "blue" "1"),
+                                                                      SVGLine (Line (Point 2 4) (Point 0 0))
+                                                                       (SVGStyling "red" "2" "blue" "1")]
+  it "should transform rectangles" $
+      interpolateSVG 3 (SVGAnimationRect (Rectangle (Point 0 0) (Point 4 2))
+                         (Rectangle (Point 2 4) (Point 0 0))
+                         (SVGStyling "red" "2" "blue" "1")) `shouldBe` [SVGRect (Rectangle (Point 0 0) (Point 4 2))
+                                                                         (SVGStyling "red" "2" "blue" "1"),
+                                                                        SVGRect (Rectangle (Point 1 2) (Point 2 1))
+                                                                         (SVGStyling "red" "2" "blue" "1"),
+                                                                        SVGRect (Rectangle (Point 2 4) (Point 0 0))
+                                                                         (SVGStyling "red" "2" "blue" "1")]
+  it "should transform circles" $
+    interpolateSVG 3 (SVGAnimationCircle (Circle (Point 0 0) 10)
+                      (Circle (Point 2 4) 20)
+                      (SVGStyling "red" "2" "blue" "1")) `shouldBe` [SVGCircle (Circle (Point 0 0) 10)
+                                                                      (SVGStyling "red" "2" "blue" "1"),
+                                                                     SVGCircle (Circle (Point 1 2) 15)
+                                                                      (SVGStyling "red" "2" "blue" "1"),
+                                                                     SVGCircle (Circle (Point 2 4) 20)
+                                                                      (SVGStyling "red" "2" "blue" "1")]
+  it "should transform ellipses" $
+    interpolateSVG 3 (SVGAnimationEllipse (Ellipse (Point 0 0) 10 20)
+                       (Ellipse (Point 2 4) 20 10)
+                       (SVGStyling "red" "2" "blue" "1")) `shouldBe` [SVGEllipse (Ellipse (Point 0 0) 10 20)
+                                                                       (SVGStyling "red" "2" "blue" "1"),
+                                                                      SVGEllipse (Ellipse (Point 1 2) 15 15)
+                                                                       (SVGStyling "red" "2" "blue" "1"),
+                                                                      SVGEllipse (Ellipse (Point 2 4) 20 10)
+                                                                       (SVGStyling "red" "2" "blue" "1")]
