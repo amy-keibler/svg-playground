@@ -16,17 +16,17 @@ animationsToElelemnts num animations = fmap frameToElement frames
 
 toElement :: SVGShape -> Element
 toElement (SVGLine (Line (Point xS yS) (Point xE yE))
-           (SVGStyling color width _ _)) = line_ [X1_ <<- pack (show xS), Y1_ <<- pack (show yS),
+           (SVGStyling color width _ _ _)) = line_ [X1_ <<- pack (show xS), Y1_ <<- pack (show yS),
                                                   X2_ <<- pack (show xE), Y2_ <<- pack (show yE),
                                                   Stroke_ <<- pack color, Stroke_width_ <<- pack width]
-toElement (SVGRect (Rectangle (Point xS yS) (Point xE yE)) styling) = rect_ [X_ <<- pack (show rectX),
-                                                                             Y_ <<- pack (show rectY),
-                                                                             Width_ <<- pack (show width),
-                                                                             Height_ <<- pack (show height),
-                                                                             Stroke_ <<- pack (stroke styling),
-                                                                             Stroke_width_ <<- pack (strokeWidth styling),
-                                                                             Fill_ <<- pack (fill styling),
-                                                                             Fill_opacity_ <<- pack (fillOpacity styling)]
+toElement (SVGRect (Rectangle (Point xS yS) (Point xE yE)) styling) = rect_ $ [X_ <<- pack (show rectX),
+                                                                               Y_ <<- pack (show rectY),
+                                                                               Width_ <<- pack (show width),
+                                                                               Height_ <<- pack (show height),
+                                                                               Stroke_ <<- pack (stroke styling),
+                                                                               Stroke_width_ <<- pack (strokeWidth styling),
+                                                                               Fill_ <<- pack (fill styling),
+                                                                               Fill_opacity_ <<- pack (fillOpacity styling)] ++ shapeSpecificElements (shapeStyle styling)
   where rectX = min xS xE
         rectY = min yS yE
         width = abs $ xS - xE
@@ -46,3 +46,7 @@ toElement (SVGEllipse ellipse styling) = ellipse_ [Cx_ <<- pack ((show . x . ell
                                                   Stroke_width_ <<- pack (strokeWidth styling),
                                                   Fill_ <<- pack (fill styling),
                                                   Fill_opacity_ <<- pack (fillOpacity styling)]
+
+shapeSpecificElements :: Maybe ShapeStyle -> [Attribute]
+shapeSpecificElements Nothing = []
+shapeSpecificElements (Just rectStyle) = [Rx_ <<- pack (rx rectStyle), Ry_ <<- pack (ry rectStyle)]
