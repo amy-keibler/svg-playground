@@ -2,7 +2,7 @@
     "filename": "/tmp/player_death",
     "frameWidth": 64,
     "frameHeight": 64,
-    "numFrames": 10,
+    "numFrames": 20,
     "staticShapes": [{
         "ellipse": {
             "ellipseCenter": {
@@ -13,9 +13,9 @@
             "rY": 8
         },
         "style": {
-            "stroke": "#FFFFFF",
+            "stroke": "#CC0000",
             "strokeWidth": "0",
-            "fill": "#FFFFFF",
+            "fill": "#CC0000",
             "fillOpacity": "1"
         }
     }, {
@@ -28,9 +28,9 @@
             "rY": 22
         },
         "style": {
-            "stroke": "#FFFFFF",
+            "stroke": "#CC0000",
             "strokeWidth": "0",
-            "fill": "#FFFFFF",
+            "fill": "#CC0000",
             "fillOpacity": "1"
         }
     }],
@@ -47,12 +47,12 @@
         },
         "endRect": {
             "topLeft": {
-                "x": 26,
-                "y": 26
+                "x": 32,
+                "y": 32
             },
             "bottomRight": {
-                "x": 38,
-                "y": 38
+                "x": 32,
+                "y": 32
             }
         },
         "animatedStyle": {
@@ -61,7 +61,7 @@
             "fill": "#FFFFFF",
             "fillOpacity": "0"
         }
-    },{
+    }, {
         "startRect": {
             "topLeft": {
                 "x": 2,
@@ -74,12 +74,12 @@
         },
         "endRect": {
             "topLeft": {
-                "x": 26,
-                "y": 26
+                "x": 32,
+                "y": 32
             },
             "bottomRight": {
-                "x": 38,
-                "y": 38
+                "x": 32,
+                "y": 32
             }
         },
         "animatedStyle": {
@@ -88,7 +88,12 @@
             "fill": "#FFFFFF",
             "fillOpacity": "0",
             "rx": "10",
-            "ry": "10"
+            "ry": "10",
+            "shapeStyle": {
+                "shape": "rect",
+                "rx": "10",
+                "ry": "10"
+            }
         }
     }]
 }

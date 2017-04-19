@@ -1,6 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 module AnimationConfig (AnimationConfig(..)
+                       , ShapeStyle(..)
                        , SVGStyling(..)
                        , SVGShape(..)
                        , SVGAnimation(..)
@@ -24,11 +25,20 @@ defaultFrameSize = 64
 defaultNumFrames :: Int
 defaultNumFrames = 10
 
+data ShapeStyle = RectStyle { rx :: String, ry :: String } deriving (Eq, Show, Generic)
+
+instance FromJSON ShapeStyle where
+  parseJSON (Object v) = RectStyle <$>
+                         v .:? "rx" .!= "0" <*>
+                         v .:? "ry" .!= "0"
+  parseJSON _ = mzero
+
 data SVGStyling = SVGStyling {
   stroke :: String
   , strokeWidth :: String
   , fill :: String
   , fillOpacity :: String
+  , shapeStyle :: Maybe ShapeStyle
   } deriving (Eq, Show, Generic)
 
 instance FromJSON SVGStyling where
@@ -36,7 +46,8 @@ instance FromJSON SVGStyling where
                          v .:? "stroke" .!= "black" <*>
                          v .:? "strokeWidth" .!= "1" <*>
                          v .:? "fill" .!= "white" <*>
-                         v .:? "fillOpacity" .!= "1"
+                         v .:? "fillOpacity" .!= "1" <*>
+                         v .:? "shapeStyle" .!= Nothing
   parseJSON _ = mzero
 
 data SVGShape = SVGLine Line SVGStyling
@@ -82,10 +93,10 @@ instance FromJSON SVGAnimation where
   parseJSON _ = mzero
 
 interpolateSVG :: Int -> SVGAnimation -> [SVGShape]
-interpolateSVG num (SVGAnimationLine lineStart lineEnd style) = zipWith SVGLine (animate num lineStart lineEnd) (repeat style)
-interpolateSVG num (SVGAnimationRect rectStart rectEnd style) = zipWith SVGRect (animate num rectStart rectEnd) (repeat style)
-interpolateSVG num (SVGAnimationCircle circleStart circleEnd style) = zipWith SVGCircle (animate num circleStart circleEnd) (repeat style)
-interpolateSVG num (SVGAnimationEllipse ellipseStart ellipseEnd style) = zipWith SVGEllipse (animate num ellipseStart ellipseEnd) (repeat style)
+interpolateSVG num (SVGAnimationLine lineStart lineEnd style) = map (`SVGLine` style) (animate num lineStart lineEnd)
+interpolateSVG num (SVGAnimationRect rectStart rectEnd style) = map (`SVGRect` style) (animate num rectStart rectEnd)
+interpolateSVG num (SVGAnimationCircle circleStart circleEnd style) = map (`SVGCircle` style) (animate num circleStart circleEnd)
+interpolateSVG num (SVGAnimationEllipse ellipseStart ellipseEnd style) = map (`SVGEllipse` style) (animate num ellipseStart ellipseEnd)
 
 data AnimationConfig = AnimationConfig {
   filename :: String

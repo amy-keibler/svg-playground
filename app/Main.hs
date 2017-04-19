@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
-import Animation
 import AnimationConfig
 import SVG
 
@@ -9,7 +8,6 @@ import Graphics.Svg hiding (translate, toElement)
 import Data.Text (pack)
 import System.Environment (getArgs)
 
-import Data.List (transpose)
 
 filenameArg :: [String] -> String
 filenameArg [] = undefined
