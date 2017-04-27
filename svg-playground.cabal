@@ -40,6 +40,9 @@ test-suite svg-playground-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
+  other-modules:       AnimationConfigSpec
+                     , AnimationSpec
+                     , SVGSpec
   build-depends:       base
                      , svg-playground
                      , hspec
