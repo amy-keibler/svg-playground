@@ -30,7 +30,7 @@ svg config content = doctype <> with (svg11_ content) [Version_ <<- "1.1",
                     frameH = pack $ show $ frameHeight config
 
 staticSVGPart :: AnimationConfig -> Element
-staticSVGPart = foldr1 (<>) . fmap toElement . staticShapes
+staticSVGPart = foldr (<>) mempty . fmap toElement . staticShapes
 
 dynamicSVGPart :: AnimationConfig -> [Element]
 dynamicSVGPart config = animationsToElelemnts (numFrames config) (animatedShapes config)
