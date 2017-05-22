@@ -1,0 +1,188 @@
+{
+    "filename": "/tmp/enemy_death_expand",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "numFrames": 10,
+    "animatedShapes": [{
+        "startRect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 32,
+                "y": 32
+            },
+            "bottomRight": {
+                "x": 32,
+                "y": 32
+            }
+        },
+        "animatedStyle": {
+            "stroke": "black",
+            "strokeWidth": "0",
+            "fill": "#660000",
+            "fillOpacity": ".5"
+        }
+    }, {
+        "startRect": {
+            "topLeft": {
+                "x": 4,
+                "y": 4
+            },
+            "bottomRight": {
+                "x": 60,
+                "y": 60
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 32,
+                "y": 32
+            },
+            "bottomRight": {
+                "x": 32,
+                "y": 32
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#990000",
+            "strokeWidth": "8",
+            "fill": "black",
+            "fillOpacity": "0"
+        }
+    }, {
+        "startRect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 32,
+                "y": 32
+            },
+            "bottomRight": {
+                "x": 32,
+                "y": 32
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#cc0000",
+            "strokeWidth": "4",
+            "fill": "black",
+            "fillOpacity": "0"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": 16
+            },
+            "end": {
+                "x": 48,
+                "y": 48
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 0,
+                "y": 0
+            },
+            "end": {
+                "x": 64,
+                "y": 64
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#990000",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": 48
+            },
+            "end": {
+                "x": 48,
+                "y": 16
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 0,
+                "y": 64
+            },
+            "end": {
+                "x": 64,
+                "y": 0
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#990000",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 20,
+                "y": 20
+            },
+            "end": {
+                "x": 44,
+                "y": 44
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 0,
+                "y": 0
+            },
+            "end": {
+                "x": 64,
+                "y": 64
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#cc0000",
+            "strokeWidth": "4"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 20,
+                "y": 44
+            },
+            "end": {
+                "x": 44,
+                "y": 20
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 0,
+                "y": 64
+            },
+            "end": {
+                "x": 64,
+                "y": 0
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#cc0000",
+            "strokeWidth": "4"
+        }
+    }]
+}
