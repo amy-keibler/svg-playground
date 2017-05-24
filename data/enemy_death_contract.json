@@ -1,17 +1,17 @@
 {
-    "filename": "/tmp/enemy_death_contract",
+    "filename": "/tmp/enemy_death_1",
     "frameWidth": 64,
     "frameHeight": 64,
     "numFrames": 10,
     "animatedShapes": [{
         "startLine": {
             "start": {
-                "x": 0,
-                "y": 0
+                "x": 10,
+                "y": 10
             },
             "end": {
-                "x": 64,
-                "y": 64
+                "x": 54,
+                "y": 54
             }
         },
         "endLine": {
@@ -31,12 +31,12 @@
     }, {
         "startLine": {
             "start": {
-                "x": 0,
-                "y": 64
+                "x": 10,
+                "y": 54
             },
             "end": {
-                "x": 64,
-                "y": 0
+                "x": 54,
+                "y": 10
             }
         },
         "endLine": {
@@ -56,12 +56,12 @@
     }, {
         "startLine": {
             "start": {
-                "x": 0,
-                "y": 0
+                "x": 10,
+                "y": 10
             },
             "end": {
-                "x": 64,
-                "y": 64
+                "x": 54,
+                "y": 54
             }
         },
         "endLine": {
@@ -81,12 +81,12 @@
     }, {
         "startLine": {
             "start": {
-                "x": 0,
-                "y": 64
+                "x": 10,
+                "y": 54
             },
             "end": {
-                "x": 64,
-                "y": 0
+                "x": 54,
+                "y": 10
             }
         },
         "endLine": {
