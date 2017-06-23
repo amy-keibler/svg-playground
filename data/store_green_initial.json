@@ -1,0 +1,204 @@
+{
+    "filename": "/tmp/store_green_",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "numFrames": 10,
+    "staticShapes": [],
+    "animatedShapes": [{
+        "startRect": {
+            "topLeft": {
+                "x": 22,
+                "y": 62
+            },
+            "bottomRight": {
+                "x": 42,
+                "y": 62
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "animatedStyle": {
+            "stroke": "black",
+            "strokeWidth": "0",
+            "fill": "#006600",
+            "fillOpacity": ".5",
+            "shapeStyle": {
+                "shape": "rect",
+                "rx": "10",
+                "ry": "10"
+            }
+        }
+    }, {
+        "startRect": {
+            "topLeft": {
+                "x": 24,
+                "y": 60
+            },
+            "bottomRight": {
+                "x": 40,
+                "y": 60
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 4,
+                "y": 4
+            },
+            "bottomRight": {
+                "x": 60,
+                "y": 60
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#009900",
+            "strokeWidth": "8",
+            "fill": "black",
+            "fillOpacity": "0",
+            "shapeStyle": {
+                "shape": "rect",
+                "rx": "10",
+                "ry": "10"
+            }
+        }
+    }, {
+        "startRect": {
+            "topLeft": {
+                "x": 22,
+                "y": 62
+            },
+            "bottomRight": {
+                "x": 42,
+                "y": 62
+            }
+        },
+        "endRect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#00cc00",
+            "strokeWidth": "4",
+            "fill": "black",
+            "fillOpacity": "0",
+            "shapeStyle": {
+                "shape": "rect",
+                "rx": "10",
+                "ry": "10"
+            }
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 32,
+                "y": -32
+            },
+            "end": {
+                "x": 32,
+                "y": 0
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 32,
+                "y": 26
+            },
+            "end": {
+                "x": 32,
+                "y": 58
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#009900",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": -16
+            },
+            "end": {
+                "x": 48,
+                "y": -16
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 16,
+                "y": 42
+            },
+            "end": {
+                "x": 48,
+                "y": 42
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#009900",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 32,
+                "y": -28
+            },
+            "end": {
+                "x": 32,
+                "y": -4
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 32,
+                "y": 30
+            },
+            "end": {
+                "x": 32,
+                "y": 54
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#00cc00",
+            "strokeWidth": "4"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 20,
+                "y": -16
+            },
+            "end": {
+                "x": 44,
+                "y": -16
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 20,
+                "y": 42
+            },
+            "end": {
+                "x": 44,
+                "y": 42
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#00cc00",
+            "strokeWidth": "4"
+        }
+    }]
+}
