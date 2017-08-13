@@ -1,0 +1,99 @@
+{
+    "filename": "/tmp/store_purchase_pending_",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "numFrames": 10,
+    "staticShapes": [{
+        "rect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "style": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "4",
+            "fill": "#FFFFFF",
+            "fillOpacity": "0"
+        }
+    }, {
+        "rect": {
+            "topLeft": {
+                "x": 2,
+                "y": 2
+            },
+            "bottomRight": {
+                "x": 62,
+                "y": 62
+            }
+        },
+        "style": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "4",
+            "fill": "#FFFFFF",
+            "fillOpacity": "0",
+            "rx": "10",
+            "ry": "10",
+            "shapeStyle": {
+                "shape": "rect",
+                "rx": "10",
+                "ry": "10"
+            }
+        }
+    }],
+    "animatedShapes": [{
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": 16
+            },
+            "end": {
+                "x": 48,
+                "y": 48
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 32,
+                "y": 16
+            },
+            "end": {
+                "x": 32,
+                "y": 48
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "8"
+        }
+    }, {
+        "startLine": {
+            "start": {
+                "x": 16,
+                "y": 48
+            },
+            "end": {
+                "x": 48,
+                "y": 16
+            }
+        },
+        "endLine": {
+            "start": {
+                "x": 16,
+                "y": 32
+            },
+            "end": {
+                "x": 48,
+                "y": 32
+            }
+        },
+        "animatedStyle": {
+            "stroke": "#FFFFFF",
+            "strokeWidth": "8"
+        }
+    }]
+}
