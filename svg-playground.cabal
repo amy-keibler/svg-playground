@@ -2,11 +2,11 @@ name:                svg-playground
 version:             0.1.0.0
 synopsis:            Creates animation frames for game sprites
 description:         Please see README.md
-homepage:            https://github.com/matt-keibler/svg-playground#readme
+homepage:            https://github.com/amy-keibler/svg-playground#readme
 license:             BSD3
 license-file:        LICENSE
-author:              Matt Keibler
-copyright:           2017 Matt Keibler
+author:              Amy Keibler
+copyright:           2017 Amy Keibler
 category:            Image
 build-type:          Simple
 extra-source-files:  README.md
@@ -56,4 +56,4 @@ test-suite svg-playground-test
 
 source-repository head
   type:     git
-  location: https://github.com/matt-keibler/svg-playground
+  location: https://github.com/amy-keibler/svg-playground
