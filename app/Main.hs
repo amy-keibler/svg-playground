@@ -9,13 +9,9 @@ import Data.Text (pack)
 import System.Environment (getArgs)
 
 
-filenameArg :: [String] -> String
-filenameArg [] = undefined
-filenameArg (filename':_) = filename'
-
 main :: IO ()
 main = getArgs >>= handleFileName
-  where handleFileName (filepath:_) = loadConfig <$> readFile filepath >>= outputAnimiation
+  where handleFileName (filepath:_) = readFile filepath >>= outputAnimiation . loadConfig
         handleFileName _ = putStrLn "Please pass the filename of the json config file."
 
 outputAnimiation :: Either String AnimationConfig -> IO ()
@@ -30,7 +26,7 @@ svg config content = doctype <> with (svg11_ content) [Version_ <<- "1.1",
                     frameH = pack $ show $ frameHeight config
 
 staticSVGPart :: AnimationConfig -> Element
-staticSVGPart = foldr (<>) mempty . fmap toElement . staticShapes
+staticSVGPart = mconcat . fmap toElement . staticShapes
 
 dynamicSVGPart :: AnimationConfig -> [Element]
 dynamicSVGPart config = animationsToElelemnts (numFrames config) (animatedShapes config)
