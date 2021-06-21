@@ -1,6 +1,6 @@
 # svg-playground
 
-[![Build Status](https://travis-ci.org/matt-keibler/svg-playground.svg?branch=master)](https://travis-ci.org/matt-keibler/svg-playground)
+[![Build Status](https://travis-ci.org/amy-keibler/svg-playground.svg?branch=master)](https://travis-ci.org/amy-keibler/svg-playground)
 
 ## Purpose
 This tool was created for generating SVG animations for game assets. SVG was chosen because it provides an easy to manipulate interface and allows assets to be scaled up to accommodate higher resolutions without a loss of clarity. 
